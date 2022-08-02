@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SupplyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id_Product" />
+    </Key>
+    <Property Name="Id_Product" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_Сode" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Sales_start_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Recommended_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Dealer_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Postpartner_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="RF_VAT_Rate" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Currency" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Id_Category" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Product_Сategory" Relationship="Self.FK_Product_Product_Сategory" FromRole="Product" ToRole="Product_Сategory" />
+    <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Product" FromRole="Product" ToRole="Supply" />
+  </EntityType>
+  <EntityType Name="Product_Sections">
+    <Key>
+      <PropertyRef Name="Id_Product_Sections" />
+    </Key>
+    <Property Name="Id_Product_Sections" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product_Сategory" Relationship="Self.FK_Product_Сategory_Product_Sections" FromRole="Product_Sections" ToRole="Product_Сategory" />
+  </EntityType>
+  <EntityType Name="Product_Сategory">
+    <Key>
+      <PropertyRef Name="Id_Product_Сategory" />
+    </Key>
+    <Property Name="Id_Product_Сategory" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Id_Product_Sections" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Product_Сategory" FromRole="Product_Сategory" ToRole="Product" />
+    <NavigationProperty Name="Product_Sections" Relationship="Self.FK_Product_Сategory_Product_Sections" FromRole="Product_Сategory" ToRole="Product_Sections" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Id_Supplier" />
+    </Key>
+    <Property Name="Id_Supplier" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone_Number" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TIN" Type="String" MaxLength="12" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Settlement_account" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Supplier" FromRole="Supplier" ToRole="Supply" />
+  </EntityType>
+  <EntityType Name="Supply">
+    <Key>
+      <PropertyRef Name="Id_Supply" />
+    </Key>
+    <Property Name="Id_Supply" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_Product" Type="Int64" Nullable="false" />
+    <Property Name="Id_Supplier" Type="Int64" Nullable="false" />
+    <Property Name="Price_Supply" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Scope_Supply" Type="Int32" Nullable="false" />
+    <Property Name="Date_Supply" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Id_Worker" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Supply_Product" FromRole="Supply" ToRole="Product" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Supply_Supplier" FromRole="Supply" ToRole="Supplier" />
+    <NavigationProperty Name="Worker" Relationship="Self.FK_Supply_Worker" FromRole="Supply" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id_Worker" />
+    </Key>
+    <Property Name="Id_Worker" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Worker" FromRole="Worker" ToRole="Supply" />
+  </EntityType>
+  <Association Name="FK_Product_Product_Сategory">
+    <End Role="Product_Сategory" Type="Self.Product_Сategory" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Сategory">
+        <PropertyRef Name="Id_Product_Сategory" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Id_Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supply_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id_Product" />
+      </Principal>
+      <Dependent Role="Supply">
+        <PropertyRef Name="Id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Сategory_Product_Sections">
+    <End Role="Product_Sections" Type="Self.Product_Sections" Multiplicity="1" />
+    <End Role="Product_Сategory" Type="Self.Product_Сategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Sections">
+        <PropertyRef Name="Id_Product_Sections" />
+      </Principal>
+      <Dependent Role="Product_Сategory">
+        <PropertyRef Name="Id_Product_Sections" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supply_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Id_Supplier" />
+      </Principal>
+      <Dependent Role="Supply">
+        <PropertyRef Name="Id_Supplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supply_Worker">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id_Worker" />
+      </Principal>
+      <Dependent Role="Supply">
+        <PropertyRef Name="Id_Worker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SupplyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Product_Sections" EntityType="Self.Product_Sections" />
+    <EntitySet Name="Product_Сategory" EntityType="Self.Product_Сategory" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+    <EntitySet Name="Supply" EntityType="Self.Supply" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Worker" EntityType="Self.Worker" />
+    <AssociationSet Name="FK_Product_Product_Сategory" Association="Self.FK_Product_Product_Сategory">
+      <End Role="Product_Сategory" EntitySet="Product_Сategory" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supply_Product" Association="Self.FK_Supply_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Supply" EntitySet="Supply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Сategory_Product_Sections" Association="Self.FK_Product_Сategory_Product_Sections">
+      <End Role="Product_Sections" EntitySet="Product_Sections" />
+      <End Role="Product_Сategory" EntitySet="Product_Сategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="Supply" EntitySet="Supply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supply_Worker" Association="Self.FK_Supply_Worker">
+      <End Role="Worker" EntitySet="Worker" />
+      <End Role="Supply" EntitySet="Supply" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

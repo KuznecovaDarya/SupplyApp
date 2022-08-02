@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SupplyModelContainer" CdmEntityContainer="SupplyEntities">
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="SupplyModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id_Product" ColumnName="Id_Product" />
+          <ScalarProperty Name="Product_Сode" ColumnName="Product_Сode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Sales_start_date" ColumnName="Sales_start_date" />
+          <ScalarProperty Name="Recommended_Price" ColumnName="Recommended_Price" />
+          <ScalarProperty Name="Dealer_Price" ColumnName="Dealer_Price" />
+          <ScalarProperty Name="Postpartner_Price" ColumnName="Postpartner_Price" />
+          <ScalarProperty Name="RF_VAT_Rate" ColumnName="RF_VAT_Rate" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Id_Category" ColumnName="Id_Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Sections">
+      <EntityTypeMapping TypeName="SupplyModel.Product_Sections">
+        <MappingFragment StoreEntitySet="Product_Sections">
+          <ScalarProperty Name="Id_Product_Sections" ColumnName="Id_Product_Sections" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Сategory">
+      <EntityTypeMapping TypeName="SupplyModel.Product_Сategory">
+        <MappingFragment StoreEntitySet="Product_Сategory">
+          <ScalarProperty Name="Id_Product_Сategory" ColumnName="Id_Product_Сategory" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id_Product_Sections" ColumnName="Id_Product_Sections" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier">
+      <EntityTypeMapping TypeName="SupplyModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Id_Supplier" ColumnName="Id_Supplier" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="Settlement_account" ColumnName="Settlement_account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supply">
+      <EntityTypeMapping TypeName="SupplyModel.Supply">
+        <MappingFragment StoreEntitySet="Supply">
+          <ScalarProperty Name="Id_Supply" ColumnName="Id_Supply" />
+          <ScalarProperty Name="Id_Product" ColumnName="Id_Product" />
+          <ScalarProperty Name="Id_Supplier" ColumnName="Id_Supplier" />
+          <ScalarProperty Name="Price_Supply" ColumnName="Price_Supply" />
+          <ScalarProperty Name="Scope_Supply" ColumnName="Scope_Supply" />
+          <ScalarProperty Name="Date_Supply" ColumnName="Date_Supply" />
+          <ScalarProperty Name="Id_Worker" ColumnName="Id_Worker" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SupplyModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worker">
+      <EntityTypeMapping TypeName="SupplyModel.Worker">
+        <MappingFragment StoreEntitySet="Worker">
+          <ScalarProperty Name="Id_Worker" ColumnName="Id_Worker" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
